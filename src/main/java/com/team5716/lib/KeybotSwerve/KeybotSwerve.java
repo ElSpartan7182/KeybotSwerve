@@ -215,13 +215,16 @@ public class KeybotSwerve extends SubsystemBase {
 	public void resetPoseToPose(Pose2d pose) {
 		swervePoseEstimator.resetPosition(getGyroRotation(), getModulePositions(), pose);
 	}
+    public void resetHeading(double deg) {
+        Pose2d actualOdometry = getPose();
+        Rotation2d rotation = new Rotation2d(Math.toDegrees(deg)); 
+        Pose2d newOdometry = new Pose2d(actualOdometry.getX(), actualOdometry.getY(), rotation);
+        resetPoseToPose(newOdometry);
+    }
 	private Rotation2d getGyroRotation() {
 		if (isSimulation && lastDesiredStates != null) {
 			simAngle += swerveKinematics.toChassisSpeeds(lastDesiredStates).omegaRadiansPerSecond * timeFromLastUpdate;
-
-			// Wrap to +- 1 rotation
 			simAngle = simAngle % (2 * Math.PI);
-			// Wrap to 0 -> 1 rotation
 			simAngle = (simAngle < 0) ? simAngle + (2 * Math.PI) : simAngle;
 			return Rotation2d.fromRadians(simAngle);
 		}
