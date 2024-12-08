@@ -10,6 +10,7 @@ import com.team5716.robot.Subsystems.SwerveSubsystem;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
@@ -33,6 +34,7 @@ public class RobotContainer {
                   KEYBOT_DRIVE_CONTROLLER.btn_RightBumper, falseTrigger, falseTrigger,
                   falseTrigger, falseTrigger, falseTrigger,
                   falseTrigger, falseTrigger));
+    KEYBOT_DRIVE_CONTROLLER.btn_Y.onTrue(new InstantCommand(()->swerveSubsystem.resetHeading(0)));
   }
 
   public Command getAutonomousCommand() {
