@@ -4,7 +4,13 @@
 
 package com.team5716.robot;
 
+import com.team5716.lib.KeybotPreferences.KeybotPreferences;
+import com.team5716.robot.Constants.fieldConstants;
+
+import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -16,6 +22,18 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
+
+    if (Robot.isSimulation()){
+      DataLogManager.start("src/main");
+    } else {
+      DataLogManager.start();
+    }
+
+    DataLogManager.logNetworkTables(true);
+    DriverStation.startDataLog(DataLogManager.getLog(), true);
+    DriverStation.silenceJoystickConnectionWarning(true);
+
+    KeybotPreferences.useDefaults();
   }
 
   @Override
@@ -27,7 +45,10 @@ public class Robot extends TimedRobot {
   public void disabledInit() {}
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    fieldConstants.ALLIANCE = DriverStation.getAlliance();
+    SmartDashboard.putString("ALLIANCE", fieldConstants.ALLIANCE.toString());
+  }
 
   @Override
   public void disabledExit() {}
