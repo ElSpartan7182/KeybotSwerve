@@ -8,19 +8,19 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class KeybotXboxController extends XboxController {
 
-	public Trigger btn_A = new Trigger(super::getAButton);
-	public Trigger btn_B = new Trigger(super::getBButton);
-	public Trigger btn_X = new Trigger(super::getXButton);
-	public Trigger btn_Y = new Trigger(super::getYButton);
+	public Trigger boton_A = new Trigger(super::getAButton);
+	public Trigger boton_B = new Trigger(super::getBButton);
+	public Trigger boton_X = new Trigger(super::getXButton);
+	public Trigger boton_Y = new Trigger(super::getYButton);
 
-	public Trigger btn_LeftBumper = new Trigger(super::getLeftBumper);
-	public Trigger btn_RightBumper = new Trigger(super::getRightBumper);
+	public Trigger boton_LeftBumper = new Trigger(super::getLeftBumper);
+	public Trigger boton_RightBumper = new Trigger(super::getRightBumper);
 
-	public Trigger btn_Start = new Trigger(super::getStartButton);
-	public Trigger btn_Back = new Trigger(super::getBackButton);
+	public Trigger boton_Start = new Trigger(super::getStartButton);
+	public Trigger boton_Back = new Trigger(super::getBackButton);
 
-	public Trigger btn_LeftStick = new Trigger(super::getLeftStickButton);
-	public Trigger btn_RightStick = new Trigger(super::getRightStickButton);
+	public Trigger boton_LeftStick = new Trigger(super::getLeftStickButton);
+	public Trigger boton_RightStick = new Trigger(super::getRightStickButton);
 
 	private final int D_PAD_NORTH = 0;
 	private final int D_PAD_NORTH_EAST = 45;
@@ -31,19 +31,19 @@ public class KeybotXboxController extends XboxController {
 	private final int D_PAD_WEST = 270;
 	private final int D_PAD_NORTH_WEST = 315;
 
-	public Trigger btn_North = new Trigger(() -> super.getPOV() == D_PAD_NORTH);
-	public Trigger btn_NorthEast = new Trigger(() -> super.getPOV() == D_PAD_NORTH_EAST);
-	public Trigger btn_East = new Trigger(() -> super.getPOV() == D_PAD_EAST);
-	public Trigger btn_SouthEast = new Trigger(() -> super.getPOV() == D_PAD_SOUTH_EAST);
-	public Trigger btn_South = new Trigger(() -> super.getPOV() == D_PAD_SOUTH);
-	public Trigger btn_SouthWest = new Trigger(() -> super.getPOV() == D_PAD_SOUTH_WEST);
-	public Trigger btn_West = new Trigger(() -> super.getPOV() == D_PAD_WEST);
-	public Trigger btn_NorthWest = new Trigger(() -> super.getPOV() == D_PAD_NORTH_WEST);
+	public Trigger boton_North = new Trigger(() -> super.getPOV() == D_PAD_NORTH);
+	public Trigger boton_NorthEast = new Trigger(() -> super.getPOV() == D_PAD_NORTH_EAST);
+	public Trigger boton_East = new Trigger(() -> super.getPOV() == D_PAD_EAST);
+	public Trigger boton_SouthEast = new Trigger(() -> super.getPOV() == D_PAD_SOUTH_EAST);
+	public Trigger boton_South = new Trigger(() -> super.getPOV() == D_PAD_SOUTH);
+	public Trigger boton_SouthWest = new Trigger(() -> super.getPOV() == D_PAD_SOUTH_WEST);
+	public Trigger boton_West = new Trigger(() -> super.getPOV() == D_PAD_WEST);
+	public Trigger boton_NorthWest = new Trigger(() -> super.getPOV() == D_PAD_NORTH_WEST);
 
 	private double TRIGGER_PRESS_THRESHOLD = 0.5;
 
-	public Trigger btn_LeftTrigger = new Trigger(() -> super.getLeftTriggerAxis() > TRIGGER_PRESS_THRESHOLD);
-	public Trigger btn_RightTrigger = new Trigger(() -> super.getRightTriggerAxis() > TRIGGER_PRESS_THRESHOLD);
+	public Trigger boton_LeftTrigger = new Trigger(() -> super.getLeftTriggerAxis() > TRIGGER_PRESS_THRESHOLD);
+	public Trigger boton_RightTrigger = new Trigger(() -> super.getRightTriggerAxis() > TRIGGER_PRESS_THRESHOLD);
 
 	private double LEFT_DEADBAND = 0.1;
 	private double RIGHT_DEADBAND = 0.1;

@@ -31,10 +31,10 @@ public class RobotContainer {
      swerveSubsystem.setDefaultCommand(
               new Drive(swerveSubsystem, KEYBOT_DRIVE_CONTROLLER.axis_LeftX, KEYBOT_DRIVE_CONTROLLER.axis_LeftX,
                   KEYBOT_DRIVE_CONTROLLER.axis_RightX,
-                  KEYBOT_DRIVE_CONTROLLER.btn_RightBumper, falseTrigger, falseTrigger,
+                  KEYBOT_DRIVE_CONTROLLER.boton_RightBumper, falseTrigger, falseTrigger,
                   falseTrigger, falseTrigger, falseTrigger,
                   falseTrigger, falseTrigger));
-    KEYBOT_DRIVE_CONTROLLER.btn_Y.onTrue(new InstantCommand(()->swerveSubsystem.resetHeading(0)));
+    KEYBOT_DRIVE_CONTROLLER.boton_Y.onTrue(new InstantCommand(()->swerveSubsystem.resetHeading(0)));
   }
 
   public Command getAutonomousCommand() {
