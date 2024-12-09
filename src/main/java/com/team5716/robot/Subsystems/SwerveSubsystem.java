@@ -10,10 +10,15 @@ import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.StructArrayPublisher;
+import edu.wpi.first.networktables.StructPublisher;
 import edu.wpi.first.units.Angle;
 import edu.wpi.first.units.Measure;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.Velocity;
+import edu.wpi.first.util.struct.Struct;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import com.team5716.robot.Preferences;
@@ -29,6 +34,10 @@ public class SwerveSubsystem extends KeybotSwerve {
   private static TalonFXConfiguration angleConfiguration = new TalonFXConfiguration();
   private static PIDController yawSnappingController;
   private static String[] moduleNames = { "Front Left", "Front Right", "Back Left", "Back Right" };
+
+  StructPublisher<Pose2d> pose2dPublisher = NetworkTableInstance.getDefault().getStructTopic("/SmartDashboard/Swerve/Pose2d", Pose2d.struct).publish();
+  StructArrayPublisher<SwerveModuleState> desiredStatePublisher = NetworkTableInstance.getDefault().getStructArrayTopic("/SmartDashboard/Swerve/DesiredState", SwerveModuleState.struct).publish();
+  StructArrayPublisher<SwerveModuleState> actualStatePublisher = NetworkTableInstance.getDefault().getStructArrayTopic("/SmartDashboard/Swerve/ActualState", SwerveModuleState.struct).publish();
 
   private static KeybotSwerveModule[] modules = new KeybotSwerveModule[] {
       new KeybotSwerveModule(0, SwerveMap.DriveTrainMap.FL_DRIVE, SwerveMap.DriveTrainMap.FL_ANGLE,
@@ -185,6 +194,10 @@ public class SwerveSubsystem extends KeybotSwerve {
           "Swerve/Module " + moduleNames[mod.moduleNumber] + "/Absolute Encoder Raw Value (Rotations)",
           mod.getRawAbsoluteEncoder());
     }
+
+    pose2dPublisher.set(getPose());
+    desiredStatePublisher.set(getDesiredModuleStates());
+    actualStatePublisher.set(getActualModuleStates());
 
     SmartDashboard.putNumber("Swerve Rotation", getRotation().getDegrees());
   }
