@@ -26,10 +26,10 @@ public class Constants {
 
     public static class swerveConstants {
 
-    public static final double FL_OFFSET = 0.0;
-    public static final double FR_OFFSET = 0.0;
-    public static final double BL_OFFSET = 0.0;
-    public static final double BR_OFFSET = 0.0;
+    public static final double FL_OFFSET = 0.100098;
+    public static final double FR_OFFSET = -0.348633;
+    public static final double BL_OFFSET = 0.176270;
+    public static final double BR_OFFSET = -0.106201;
 
     public static final InvertedValue DRIVE_MOTOR_INVERT = InvertedValue.CounterClockwise_Positive;
     public static final InvertedValue ANGLE_MOTOR_INVERT = InvertedValue.Clockwise_Positive;
